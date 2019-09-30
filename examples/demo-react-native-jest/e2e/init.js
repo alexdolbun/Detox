@@ -1,3 +1,7 @@
+const { benchmark, collectStats } = require('./init-benchmark');
+
+global.benchmark = benchmark;
+
 const detox = require('detox');
 const config = require('../package.json').detox;
 const adapter = require('detox/runners/jest/adapter');
@@ -28,4 +32,5 @@ beforeEach(async () => {
 afterAll(async () => {
   await adapter.afterAll();
   await detox.cleanup();
+  await collectStats();
 });
